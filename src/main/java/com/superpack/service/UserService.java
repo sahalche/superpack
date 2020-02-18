@@ -4,6 +4,7 @@ import com.superpack.config.Constants;
 import com.superpack.domain.Authority;
 import com.superpack.domain.User;
 import com.superpack.repository.AuthorityRepository;
+import com.superpack.repository.UserExtraRepository;
 import com.superpack.repository.UserRepository;
 import com.superpack.security.AuthoritiesConstants;
 import com.superpack.security.SecurityUtils;
@@ -13,6 +14,7 @@ import io.github.jhipster.security.RandomUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,6 +26,8 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import javax.inject.Inject;
 
 /**
  * Service class for managing users.
@@ -39,6 +43,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     private final AuthorityRepository authorityRepository;
+    @Autowired
+    private UserExtraRepository userExtraRepository;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
         this.userRepository = userRepository;
@@ -80,7 +86,7 @@ public class UserService {
             });
     }
 
-    public User registerUser(UserDTO userDTO, String password) {
+    public User registerUser(UserDTO userDTO, String password, String phone) {
         userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).ifPresent(existingUser -> {
             boolean removed = removeNonActivatedUser(existingUser);
             if (!removed) {
@@ -114,6 +120,15 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
+        
+     // Create and save the UserExtra entity
+        UserExtra newUserExtra = new UserExtra();
+        newUserExtra.setUser(newUser);
+        newUserExtra.setPhone(phone);
+        userExtraRepository.save(newUserExtra);
+        
+        log.debug("Created Information for UserExtra: {}", newUserExtra);
+        
         return newUser;
     }
 

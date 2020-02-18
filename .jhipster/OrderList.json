@@ -1,0 +1,39 @@
+{
+    "name": "OrderList",
+    "fields": [
+        {
+            "fieldName": "totalAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "userIdpCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "paymentDone",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "orderProduct",
+            "otherEntityRelationshipName": "orderList",
+            "relationshipName": "orderProduct"
+        }
+    ],
+    "changelogDate": "20200218161337",
+    "entityTableName": "order_list",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

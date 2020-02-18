@@ -1,0 +1,39 @@
+{
+    "name": "OrderProduct",
+    "fields": [
+        {
+            "fieldName": "count",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "orderProduct",
+            "relationshipName": "product",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "orderList",
+            "otherEntityRelationshipName": "orderProduct",
+            "relationshipName": "orderList",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200218161338",
+    "entityTableName": "order_product",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
