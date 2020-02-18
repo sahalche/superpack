@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.superpack"
+    },
+    "jhipsterVersion": "6.6.0",
+    "applicationType": "gateway",
+    "baseName": "superpack",
+    "packageName": "com.superpack",
+    "packageFolder": "com/superpack",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MTI5NmIxN2I2NjQwYjEzYWY5MjFkMTlkMzc2ZjdmNTQ0ODQ5MzM1NGM3M2VjNDg1M2I1ZGJkZDlmOWNlODNmNWQ1N2EwOWY3OGJhMGQ4MDVhZDg4ZTM2ZmM4ZGJlMTUyYTRkMWU3NWYxMjgxYzU1MGVmYjllNGVmY2E0YjA2ZmY=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "creationTimestamp": 1582040537995,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

@@ -1,0 +1,75 @@
+entity UserExtra
+{
+phone String,
+latitude String,
+longitude String
+}
+
+entity Category
+{
+categoryName String,
+description String,
+image Blob,
+imageUriLink String
+}
+
+entity Product
+{
+description String,
+name String,
+actualRate Double,
+offerRate Double,
+description Double,
+specialOfferItem Boolean
+}
+entity ProductImage{
+image Blob,
+imageUriLink String
+}
+entity Review
+{
+createdDate Instant,
+userIdpCode String,
+rating Double,
+comment String
+
+}
+entity Store
+{
+storeIdpCode String,
+storeName String,
+latitude String,
+longitude String,
+address String,
+image Blob,
+imageUriLink String
+}
+
+entity OrderList{
+totalAmount Double,
+createdDate Instant,
+userIdpCode String,
+paymentDone Boolean
+}
+entity OrderProduct
+{
+count Long,
+createdDate Instant
+}
+
+relationship OneToOne {
+UserExtra{user} to User
+}
+
+relationship OneToMany{
+Category{product} to Product{category},
+Store{product} to Product{store},
+Product{productImage} to ProductImage{product},
+Product{review} to Review,
+OrderList{orderProduct} to OrderProduct{orderList}
+}
+relationship ManyToOne{
+OrderProduct{product} to Product
+}
+service all with serviceImpl
+paginate * with pagination
