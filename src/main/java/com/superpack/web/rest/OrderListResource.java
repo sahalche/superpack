@@ -57,6 +57,8 @@ public class OrderListResource {
         if (orderList.getId() != null) {
             throw new BadRequestAlertException("A new orderList cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        System.out.println("Product+++++++++++++++++"+orderList.getOrderProducts());
+        orderList.getOrderProducts().forEach(x->x.setOrderList(orderList));
         OrderList result = orderListService.save(orderList);
         return ResponseEntity.created(new URI("/api/order-lists/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
@@ -78,6 +80,8 @@ public class OrderListResource {
         if (orderList.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        System.out.println("Product+++++++++++++++++"+orderList.getOrderProducts());
+        orderList.getOrderProducts().forEach(x->x.setOrderList(orderList));
         OrderList result = orderListService.save(orderList);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, orderList.getId().toString()))

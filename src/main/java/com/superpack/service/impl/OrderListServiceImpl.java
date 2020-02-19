@@ -37,6 +37,7 @@ public class OrderListServiceImpl implements OrderListService {
     @Override
     public OrderList save(OrderList orderList) {
         log.debug("Request to save OrderList : {}", orderList);
+        System.out.println("Cacaded OrderProduct======"+orderList.getOrderProducts());
         return orderListRepository.save(orderList);
     }
 

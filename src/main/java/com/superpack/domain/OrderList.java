@@ -19,7 +19,8 @@ public class OrderList implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    
     @Column(name = "total_amount")
     private Double totalAmount;
 
@@ -32,7 +33,7 @@ public class OrderList implements Serializable {
     @Column(name = "payment_done")
     private Boolean paymentDone;
 
-    @OneToMany(mappedBy = "orderList")
+    @OneToMany(mappedBy = "orderList",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private Set<OrderProduct> orderProducts = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -106,8 +107,9 @@ public class OrderList implements Serializable {
     }
 
     public OrderList addOrderProduct(OrderProduct orderProduct) {
-        this.orderProducts.add(orderProduct);
+    	
         orderProduct.setOrderList(this);
+        this.orderProducts.add(orderProduct);
         return this;
     }
 

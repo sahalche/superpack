@@ -3,6 +3,7 @@ package com.superpack.service;
 import com.superpack.config.Constants;
 import com.superpack.domain.Authority;
 import com.superpack.domain.User;
+import com.superpack.domain.UserExtra;
 import com.superpack.repository.AuthorityRepository;
 import com.superpack.repository.UserExtraRepository;
 import com.superpack.repository.UserRepository;
@@ -27,7 +28,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.inject.Inject;
 
 /**
  * Service class for managing users.
@@ -112,9 +112,10 @@ public class UserService {
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
-        newUser.setActivated(false);
+       // newUser.setActivated(false);
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
+        newUser.setActivated(true);//Activation on first Login
         Set<Authority> authorities = new HashSet<>();
         authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
         newUser.setAuthorities(authorities);
